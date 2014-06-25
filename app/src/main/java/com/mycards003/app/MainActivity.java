@@ -165,29 +165,22 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         }
 
         private void selectItemLista(int position) {
-            Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
-            /*
+            //Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
+
             try {
                 Intent intent = new Intent(getActivity(), CadActivity.class);
+                switch (position) {
+                    case 1: {
+                        intent = new Intent(getActivity(), CadBancoActivity.class);
+                        break;
+                    }
+                }
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 //e.printStackTrace();
             }
-            */
 
-            /*
-            mCurrentSelectedPosition = position;
-            if (mDrawerListView != null) {
-                mDrawerListView.setItemChecked(position, true);
-            }
-            if (mDrawerLayout != null) {
-                mDrawerLayout.closeDrawer(mFragmentContainerView);
-            }
-            if (mCallbacks != null) {
-                mCallbacks.onNavigationDrawerItemSelected(position);
-            }
-            */
         }
 
         @Override
