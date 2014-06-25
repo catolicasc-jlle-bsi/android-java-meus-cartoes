@@ -18,15 +18,16 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -110,6 +111,8 @@ public class MainActivity extends ActionBarActivity
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             textView.setText("Selecionado " + Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             ListView lv = (ListView)rootView.findViewById(R.id.listView);
+
+
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -117,11 +120,43 @@ public class MainActivity extends ActionBarActivity
                 }
             });
 
-            List<String> lista = new ArrayList<String>();
-            lista.add("Bradesco");
-            lista.add("Itau");
-            lista.add("Santander");
+            TextView label002 = (TextView)rootView.findViewById(R.id.label002);
+            label002.setVisibility(View.INVISIBLE);
+            EditText editText = (EditText)rootView.findViewById(R.id.editText);
+            editText.setVisibility(View.INVISIBLE);
+            EditText edit002 = (EditText)rootView.findViewById(R.id.edit002);
+            edit002.setVisibility(View.INVISIBLE);
 
+            List<String> lista = new ArrayList<String>();
+
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+                case 1 : {
+                    lista.add("Bradesco");
+                    lista.add("Itau");
+                    lista.add("Santander");
+                    break;
+                }
+                case 2: {
+                    lista.add("Visa");
+                    lista.add("Mastercard");
+                    break;
+                }
+                case 3: {
+                    lista.add("Joaquim Visa");
+                    lista.add("Joaquim Mastercard");
+                    lista.add("João Visa");
+                    lista.add("João Mastercard");
+                    lista.add("José Visa");
+                    lista.add("José Mastercard");
+                    lista.add("Maria Visa");
+                    lista.add("Maria Mastercard");
+                    lista.add("Pedro Visa");
+                    lista.add("Pedro Mastercard");
+                    lista.add("Paulo Visa");
+                    lista.add("Paulo Mastercard");
+                    break;
+                }
+            }
             ArrayAdapter<String> arrayAdapter;
             arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,lista);
 
@@ -130,8 +165,17 @@ public class MainActivity extends ActionBarActivity
         }
 
         private void selectItemLista(int position) {
-            Intent intent = new Intent(getActivity(), CadActivity.class);
-            startActivity(intent);
+            Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
+            /*
+            try {
+                Intent intent = new Intent(getActivity(), CadActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                //e.printStackTrace();
+            }
+            */
+
             /*
             mCurrentSelectedPosition = position;
             if (mDrawerListView != null) {

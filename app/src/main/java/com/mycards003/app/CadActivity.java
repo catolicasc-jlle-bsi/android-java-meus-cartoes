@@ -1,9 +1,8 @@
 package com.mycards003.app;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * Created by Takeshi on 24/06/2014.
  */
-public class CadActivity extends ActionBarActivity {
+public class CadActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
