@@ -85,11 +85,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        boolean retorno = super.onOptionsItemSelected(item);
+
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+            Toast.makeText(getApplication(),"Opção não implementada", Toast.LENGTH_SHORT).show();
         }
-        return super.onOptionsItemSelected(item);
+        return retorno;
     }
 
     public static class PlaceholderFragment extends Fragment {

@@ -1,5 +1,6 @@
 package com.mycards003.app;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -144,6 +145,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
+
+        Parametros.getInstance().posicao_menu = position +1;
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -200,8 +203,31 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
+        if (item.getItemId() == R.id.action_novo) {
             //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+
+            try {
+                Intent intent = new Intent(getActivity(), CadActivity.class);
+                String nome = "";
+                Parametros.getInstance().nm_banco = nome;
+                switch (Parametros.getInstance().posicao_menu) {
+                    case 1: {
+                        intent = new Intent(getActivity(), CadBancoActivity.class);
+                        break;
+                    }
+                    case 2: {
+                        intent = new Intent(getActivity(), CadBandeiraActivity.class);
+                        break;
+                    }
+                    case 3: {
+                        intent = new Intent(getActivity(), CadCartaoActivity.class);
+                    }
+                }
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                //e.printStackTrace();
+            }
 
             return true;
         }

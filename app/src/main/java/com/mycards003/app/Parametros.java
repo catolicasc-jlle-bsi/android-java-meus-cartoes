@@ -9,6 +9,8 @@ public class Parametros {
 
     private static Parametros parametros = null;
     public static String nm_banco;
+    public static Integer posicao_menu;
+    public static Integer posicao_lista;
 
     private Parametros() {
 

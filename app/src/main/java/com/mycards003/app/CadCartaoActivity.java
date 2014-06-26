@@ -24,10 +24,17 @@ public class CadCartaoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_cad_bandeira);
+        setContentView(R.layout.activity_cad_cartao);
 
         btn = (Button)findViewById(R.id.btnCadastro);
-        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = (Spinner)findViewById(R.id.spinner_banco);
+        List<CharSequence> lista = new ArrayList<CharSequence>();
+        lista.add("Bradesco");
+        lista.add("Itaú");
+        lista.add("Santander");
+        ArrayAdapter<CharSequence> arrayAdapter;
+        arrayAdapter = new ArrayAdapter<CharSequence>(this,android.R.layout.simple_spinner_item,lista);
+        spinner.setAdapter(arrayAdapter);
     }
 
     @Override
@@ -40,16 +47,8 @@ public class CadCartaoActivity extends Activity {
                 salvar_e_sair();
             }
         });
-/*
-        List<String> lista = new ArrayList<String>();
-        lista.add("Bradesco");
-        lista.add("Itau");
-        lista.add("Santander");
 
-        ArrayAdapter<String> arrayAdapter;
-        arrayAdapter = new ArrayAdapter.createFromResource(this, lista, androidR.layout.simple) ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,lista);
 
-        spinner.setAdapter(arrayAdapter);*/
     }
 
     private void salvar_e_sair() {
@@ -57,13 +56,13 @@ public class CadCartaoActivity extends Activity {
             EditText edNome = (EditText)this.findViewById(R.id.etNome);
             if (edNome.getText().toString().trim().equals("")) {
                 edNome.requestFocus();
-                throw new Exception("Informe o nome da bandeira");
+                throw new Exception("Informe o nome do cartão");
             }
 
-            Toast.makeText(this, "Bandeira salva com sucesso", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cartão salvo com sucesso", Toast.LENGTH_SHORT).show();
             finalizar();
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }

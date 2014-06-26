@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by Takeshi on 24/06/2014.
@@ -21,6 +22,7 @@ public class CadActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Não cai aqui
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
