@@ -30,6 +30,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>
         </activity>
+        <activity android:name=".CadBandeiraActivity"
+            android:label="@string/title_cad_bandeira"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycards003.app.MainActivity"/>
+        </activity>
+        <activity android:name=".CadCartaoActivity"
+            android:label="@string/title_cad_cartao"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycards003.app.MainActivity"/>
+        </activity>
 
     </application>
 

@@ -1,11 +1,8 @@
 package com.mycards003.app;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,7 +10,7 @@ import android.widget.Toast;
 /**
  * Created by Renan on 25/06/14.
  */
-public class CadBancoActivity extends Activity {
+public class CadBandeiraActivity extends Activity {
 
     private Button btn;
 
@@ -21,7 +18,7 @@ public class CadBancoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_cad_banco);
+        setContentView(R.layout.activity_cad_bandeira);
 
         btn = (Button)findViewById(R.id.btnCadastro);
 
@@ -44,16 +41,10 @@ public class CadBancoActivity extends Activity {
             EditText edNome = (EditText)this.findViewById(R.id.etNome);
             if (edNome.getText().toString().trim().equals("")) {
                 edNome.requestFocus();
-                throw new Exception("Informe o nome do banco");
+                throw new Exception("Informe o nome da bandeira");
             }
 
-            EditText edFenaban = (EditText)this.findViewById(R.id.etFenaban);
-            if (edFenaban.getText().toString().trim().equals("")) {
-                edFenaban.requestFocus();
-                throw new Exception("Informe o código Fenaban");
-            }
-
-            Toast.makeText(this, "Banco salvo com sucesso", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bandeira salva com sucesso", Toast.LENGTH_SHORT).show();
             finalizar();
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

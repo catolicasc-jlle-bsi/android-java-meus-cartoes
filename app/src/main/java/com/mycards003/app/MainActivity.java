@@ -33,6 +33,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private CharSequence mTitle;
 
+    private ListView lista_dados;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,26 +112,22 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             textView.setText("Selecionado " + Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            textView.setVisibility(View.INVISIBLE);
             ListView lv = (ListView)rootView.findViewById(R.id.listView);
 
+            final Integer posicao = getArguments().getInt(ARG_SECTION_NUMBER);
 
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    selectItemLista(i);
+                    selectItemLista(posicao, i);
                 }
             });
 
-            TextView label002 = (TextView)rootView.findViewById(R.id.label002);
-            label002.setVisibility(View.INVISIBLE);
-            EditText editText = (EditText)rootView.findViewById(R.id.editText);
-            editText.setVisibility(View.INVISIBLE);
-            EditText edit002 = (EditText)rootView.findViewById(R.id.edit002);
-            edit002.setVisibility(View.INVISIBLE);
-
             List<String> lista = new ArrayList<String>();
 
-            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+            //Utilizar a rotina abaixo para popular a lista selecionada.
+            switch (posicao) {
                 case 1 : {
                     lista.add("Bradesco");
                     lista.add("Itau");
@@ -164,15 +162,25 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             return rootView;
         }
 
-        private void selectItemLista(int position) {
+        private void selectItemLista(int position, int position_list) {
             //Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
 
             try {
                 Intent intent = new Intent(getActivity(), CadActivity.class);
+                ListView lv = (ListView)getActivity().findViewById(R.id.listView);
+                String nome = lv.getItemAtPosition(position_list).toString();
+                Parametros.getInstance().nm_banco = nome;
                 switch (position) {
                     case 1: {
                         intent = new Intent(getActivity(), CadBancoActivity.class);
                         break;
+                    }
+                    case 2: {
+                        intent = new Intent(getActivity(), CadBandeiraActivity.class);
+                        break;
+                    }
+                    case 3: {
+                        intent = new Intent(getActivity(), CadCartaoActivity.class);
                     }
                 }
                 startActivity(intent);

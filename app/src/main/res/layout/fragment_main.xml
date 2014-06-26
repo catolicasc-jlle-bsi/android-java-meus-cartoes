@@ -17,35 +17,10 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="11dp" />
 
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:id="@+id/editText"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/label002"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="Label"
-        android:textSize="15dp"
-        android:layout_marginTop="39dp" />
-
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:id="@+id/edit002"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="40dp" />
-
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_below="@+id/edit002"
-        android:layout_alignLeft="@+id/section_label"
-        android:layout_alignStart="@+id/section_label"
         android:choiceMode="singleChoice" />
 
 </RelativeLayout>
