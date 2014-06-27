@@ -16,5 +16,6 @@
     <string name="title_cad_bandeira">Cadastro Bandeira</string>
     <string name="title_cad_cartao">Cadastro Cartão</string>
     <string name="title_settings">Settings</string>
+    <string name="save">Salvar</string>
 
 </resources>

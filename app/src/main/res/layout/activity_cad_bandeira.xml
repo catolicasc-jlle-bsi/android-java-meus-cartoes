@@ -18,7 +18,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
+        android:text="@string/save"
         android:id="@+id/btnCadastro"
         android:layout_gravity="right" />
 </LinearLayout>
