@@ -23,6 +23,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.mycards.business.Bank;
+import com.mycards.business.Card;
+import com.mycards.business.Flag;
+import com.mycards.business.Model;
+
 public class NavigationDrawerFragment extends Fragment {
 
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
@@ -146,7 +151,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
 
-        Parametros.getInstance().posicao_menu = position +1;
+        Parametros.getInstance().posicaoMenu = position +1;
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -204,31 +209,31 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_novo) {
-            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-
             try {
                 Intent intent = new Intent(getActivity(), CadActivity.class);
-                String nome = "";
-                Parametros.getInstance().nm_banco = nome;
-                switch (Parametros.getInstance().posicao_menu) {
-                    case 1: {
+                switch (Parametros.getInstance().posicaoMenu) {
+                    case 1:
+                        Parametros.getInstance().model = new Bank();
                         intent = new Intent(getActivity(), CadBancoActivity.class);
                         break;
-                    }
-                    case 2: {
+                    case 2:
+                        Parametros.getInstance().model = new Flag();
                         intent = new Intent(getActivity(), CadBandeiraActivity.class);
                         break;
-                    }
-                    case 3: {
+                    case 3:
+                        Parametros.getInstance().model = new Card();
                         intent = new Intent(getActivity(), CadCartaoActivity.class);
-                    }
+                        break;
                 }
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                //e.printStackTrace();
             }
+            return true;
+        }
 
+        if (item.getItemId() == R.id.action_refresh) {
+            selectItem(Parametros.getInstance().posicaoMenu-1);
             return true;
         }
 

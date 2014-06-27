@@ -2,6 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mycards003.app.MainActivity" >
+    <item android:id="@+id/action_refresh"
+        android:title="@string/botao_refresh"
+        app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_novo"
         android:title="@string/botao_barra"
         app:showAsAction="withText|ifRoom" />

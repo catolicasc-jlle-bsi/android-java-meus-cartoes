@@ -2,19 +2,18 @@ package com.mycards003.app;
 
 import android.content.Intent;
 
+import com.mycards.business.Model;
+
 /**
  * Created by Takeshi on 25/06/2014.
  */
 public class Parametros {
 
     private static Parametros parametros = null;
-    public static String nm_banco;
-    public static Integer posicao_menu;
-    public static Integer posicao_lista;
+    public static Model model;
+    public static Integer posicaoMenu;
 
-    private Parametros() {
-
-    }
+    private Parametros() { }
 
     public static Parametros getInstance() {
         if (parametros == null) {
@@ -22,5 +21,4 @@ public class Parametros {
         }
         return parametros;
     }
-
 }

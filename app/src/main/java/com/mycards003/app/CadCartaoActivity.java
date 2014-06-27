@@ -9,62 +9,99 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.mycards.api.Download;
+import com.mycards.api.Upload;
+import com.mycards.business.Bank;
+import com.mycards.business.Card;
+import com.mycards.business.Flag;
+import com.mycards.business.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Renan on 25/06/14.
- */
 public class CadCartaoActivity extends Activity {
 
+    private Card card;
+
     private Button btn;
-    private Spinner spinner;
+
+    private EditText name;
+    private EditText cardName;
+    private EditText cardNumber;
+    private EditText dateValidatedMounth;
+    private EditText dateValidatedYear;
+    private EditText verifyCode;
+    private Spinner flag;
+    private Spinner bank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_cad_cartao);
-
         btn = (Button)findViewById(R.id.btnCadastro);
-        spinner = (Spinner)findViewById(R.id.spinner_banco);
-        List<CharSequence> lista = new ArrayList<CharSequence>();
-        lista.add("Bradesco");
-        lista.add("Itaú");
-        lista.add("Santander");
-        ArrayAdapter<CharSequence> arrayAdapter;
-        arrayAdapter = new ArrayAdapter<CharSequence>(this,android.R.layout.simple_spinner_item,lista);
-        spinner.setAdapter(arrayAdapter);
+
+        name = (EditText)this.findViewById(R.id.etNome);
+        /* TODO: preencher com os componentes
+        cardName =
+        cardNumber =
+        dateValidatedMounth =
+        dateValidatedYear =
+        verifyCode =*/
+        bank = (Spinner)findViewById(R.id.spinner_banco);
+        flag = (Spinner)findViewById(R.id.spinner_bandeira);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        EditText edNome = (EditText)this.findViewById(R.id.etNome);
-        edNome.setText(Parametros.getInstance().nm_banco);
+
+        card = (Card) Parametros.getInstance().model;
+
+        name.setText(card.name);
+        /* TODO: preencher com os componentes
+        cardName =
+        cardNumber =
+        dateValidatedMounth =
+        dateValidatedYear =
+        verifyCode =*/
+
+        // O spinner será carregado por outra thread
+        new Download().execute(new Bank(), this, bank);
+        new Download().execute(new Flag(), this, flag);
+
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                salvar_e_sair();
+                salvarESair();
             }
         });
-
-
     }
 
-    private void salvar_e_sair() {
+    private void salvarESair() {
         try {
-            EditText edNome = (EditText)this.findViewById(R.id.etNome);
-            if (edNome.getText().toString().trim().equals("")) {
-                edNome.requestFocus();
+            if (name.getText().toString().trim().equals("")) {
+                name.requestFocus();
                 throw new Exception("Informe o nome do cartão");
             }
+
+            card.name = name.getText().toString(); //Campo obrigatório
+            /* TODO: preencher com os componentes
+            cardName =
+            cardNumber =
+            dateValidatedMounth =
+            dateValidatedYear =
+            verifyCode =*/
+
+            card.bank = (Bank) bank.getSelectedItem();
+            card.flag = (Flag) flag.getSelectedItem();
+
+            new Upload().execute(card);
 
             Toast.makeText(this, "Cartão salvo com sucesso", Toast.LENGTH_SHORT).show();
             finalizar();
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
     }
 
     private void finalizar() {

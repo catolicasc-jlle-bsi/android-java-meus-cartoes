@@ -2,6 +2,7 @@ package com.mycards003.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -23,17 +24,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mycards.api.API;
+import com.mycards.api.Download;
+import com.mycards.business.Bank;
+import com.mycards.business.Card;
+import com.mycards.business.Flag;
+import com.mycards.business.Model;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
     private CharSequence mTitle;
-
-    private ListView lista_dados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     }
 
     public static class PlaceholderFragment extends Fragment {
+
+        private ListView listView;
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
@@ -111,67 +117,51 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            textView.setText("Selecionado " + Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            textView.setVisibility(View.INVISIBLE);
-            ListView lv = (ListView)rootView.findViewById(R.id.listView);
+            listView = (ListView)rootView.findViewById(R.id.listView);
 
             final Integer posicao = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     selectItemLista(posicao, i);
                 }
             });
 
-            List<String> lista = new ArrayList<String>();
-
-            //Utilizar a rotina abaixo para popular a lista selecionada.
-            switch (posicao) {
-                case 1 : {
-                    lista.add("Bradesco");
-                    lista.add("Itau");
-                    lista.add("Santander");
-                    break;
-                }
-                case 2: {
-                    lista.add("Visa");
-                    lista.add("Mastercard");
-                    break;
-                }
-                case 3: {
-                    lista.add("Joaquim Visa");
-                    lista.add("Joaquim Mastercard");
-                    lista.add("João Visa");
-                    lista.add("João Mastercard");
-                    lista.add("José Visa");
-                    lista.add("José Mastercard");
-                    lista.add("Maria Visa");
-                    lista.add("Maria Mastercard");
-                    lista.add("Pedro Visa");
-                    lista.add("Pedro Mastercard");
-                    lista.add("Paulo Visa");
-                    lista.add("Paulo Mastercard");
-                    break;
-                }
-            }
-            ArrayAdapter<String> arrayAdapter;
-            arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,lista);
-
-            lv.setAdapter(arrayAdapter);
+            updateListView();
             return rootView;
         }
 
-        private void selectItemLista(int position, int position_list) {
-            //Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
+        @Override
+        public void onResume() {
+            super.onResume();
+            updateListView();
+        }
 
+        private void updateListView() {
+            final Integer posicao = getArguments().getInt(ARG_SECTION_NUMBER);
+
+            switch (posicao) {
+                case 1 : {
+                    new Download().execute(new Bank(), getActivity(), listView);
+                    break;
+                }
+                case 2: {
+                    new Download().execute(new Flag(), getActivity(), listView);
+                    break;
+                }
+                case 3: {
+                    new Download().execute(new Card(), getActivity(), listView);
+                    break;
+                }
+            }
+        }
+
+        private void selectItemLista(int position, int position_list) {
             try {
                 Intent intent = new Intent(getActivity(), CadActivity.class);
                 ListView lv = (ListView)getActivity().findViewById(R.id.listView);
-                String nome = lv.getItemAtPosition(position_list).toString();
-                Parametros.getInstance().nm_banco = nome;
+                Parametros.getInstance().model = (Model) lv.getItemAtPosition(position_list);
                 switch (position) {
                     case 1: {
                         intent = new Intent(getActivity(), CadBancoActivity.class);
@@ -188,9 +178,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                //e.printStackTrace();
             }
-
         }
 
         @Override
@@ -200,5 +188,4 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }

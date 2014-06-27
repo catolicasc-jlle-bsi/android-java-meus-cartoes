@@ -23,6 +23,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_banco" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Bandeira"
+        android:id="@+id/tvBandeira"/>
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_bandeira" />
 
     <Button
         android:layout_width="wrap_content"
