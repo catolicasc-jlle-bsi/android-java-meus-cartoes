@@ -14,6 +14,7 @@ import com.mycards003.app.R;
 public class CadBandeiraActivity extends Activity {
 
     private Button btn;
+    private Button btnDelete;
     private Flag flag;
 
     @Override
@@ -23,6 +24,7 @@ public class CadBandeiraActivity extends Activity {
         setContentView(R.layout.activity_cad_bandeira);
 
         btn = (Button)findViewById(R.id.btnCadastro);
+        btnDelete = (Button)findViewById(R.id.btnDelete);
 
     }
 
@@ -40,6 +42,31 @@ public class CadBandeiraActivity extends Activity {
                 salvarESair();
             }
         });
+
+        if (Parametros.getInstance().model == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else if (Parametros.getInstance().model.id == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else {
+            btnDelete.setVisibility(View.VISIBLE);
+        }
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                excluirESair();
+            }
+        });
+    }
+
+    private void excluirESair() {
+        try {
+            //TODO:Implementar rotina de exclusão
+
+            Toast.makeText(this, "Bandeira excluída com sucesso", Toast.LENGTH_SHORT).show();
+            finalizar();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void salvarESair() {

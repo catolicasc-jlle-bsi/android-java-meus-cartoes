@@ -14,6 +14,7 @@ import com.mycards003.app.R;
 public class CadBancoActivity extends Activity {
 
     private Button btn;
+    private Button btnDelete;
     private Bank bank;
 
     @Override
@@ -23,6 +24,7 @@ public class CadBancoActivity extends Activity {
         setContentView(R.layout.activity_cad_banco);
 
         btn = (Button)findViewById(R.id.btnCadastro);
+        btnDelete = (Button)findViewById(R.id.btnDelete);
     }
 
     @Override
@@ -35,12 +37,36 @@ public class CadBancoActivity extends Activity {
 
         EditText edFenaban = (EditText)this.findViewById(R.id.etFenaban);
         edFenaban.setText(bank.code);
+        if (Parametros.getInstance().model == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else if (Parametros.getInstance().model.id == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else {
+            btnDelete.setVisibility(View.VISIBLE);
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 salvarESair();
             }
         });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                excluirESair();
+            }
+        });
+    }
+
+    private void excluirESair() {
+        try {
+            //TODO:Implementar rotina de exclusão
+
+            Toast.makeText(this, "Banco excluído com sucesso", Toast.LENGTH_SHORT).show();
+            finalizar();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void salvarESair() {

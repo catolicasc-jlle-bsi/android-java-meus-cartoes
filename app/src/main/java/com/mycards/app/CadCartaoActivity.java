@@ -20,6 +20,7 @@ public class CadCartaoActivity extends Activity {
     private Card card;
 
     private Button btn;
+    private Button btnDelete;
 
     private EditText name;
     private EditText cardName;
@@ -36,6 +37,7 @@ public class CadCartaoActivity extends Activity {
 
         setContentView(R.layout.activity_cad_cartao);
         btn = (Button)findViewById(R.id.btnCadastro);
+        btnDelete = (Button)findViewById(R.id.btnDelete);
 
         name = (EditText)this.findViewById(R.id.etNome);
         cardName = (EditText)this.findViewById(R.id.etcardName);
@@ -54,6 +56,14 @@ public class CadCartaoActivity extends Activity {
 
         card = (Card) Parametros.getInstance().model;
 
+        if (Parametros.getInstance().model == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else if (Parametros.getInstance().model.id == null) {
+            btnDelete.setVisibility(View.INVISIBLE);
+        } else {
+            btnDelete.setVisibility(View.VISIBLE);
+        }
+
         name.setText(card.name);
         cardName.setText(card.cardName);
         cardNumber.setText(card.cardNumber);
@@ -70,6 +80,22 @@ public class CadCartaoActivity extends Activity {
                 salvarESair();
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                excluirESair();
+            }
+        });
+    }
+
+    private void excluirESair() {
+        try {
+            //TODO:Implementar rotina de exclusão
+
+            Toast.makeText(this, "Cartão excluído com sucesso", Toast.LENGTH_SHORT).show();
+            finalizar();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void salvarESair() {
