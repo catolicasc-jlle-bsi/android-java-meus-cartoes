@@ -120,8 +120,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                     selectItemLista(posicao, i);
                 }
             });
-
-            updateListView();
             return rootView;
         }
 

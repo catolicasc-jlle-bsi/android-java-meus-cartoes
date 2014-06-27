@@ -79,7 +79,7 @@ public class CadCartaoActivity extends Activity {
                 throw new Exception("Informe o nome do cartão");
             }
 
-            if (!dateValidatedMonth.getText().toString().trim().equals("")) {
+            if (dateValidatedMonth.getText().toString().trim().equals("")) {
                 Integer month = Integer.getInteger(dateValidatedMonth.getText().toString().trim());
                 if ((month < 1) || (month > 12)) {
                     throw new Exception("Mês de validade inválido");

@@ -72,7 +72,6 @@ public class API {
     }
 
     public void put() {
-        url += "/" + obj.id;
         HttpPut httpPut = new HttpPut(url);
         execute(httpPut);
     }
@@ -125,7 +124,7 @@ public class API {
             httpEntity.setHeader("Accept", "application/json");
             httpEntity.setHeader("Content-type", "application/json");
             HttpResponse response = client.execute(httpEntity);
-            //.getStatusLine().getStatusCode(); // Se precisar saber o status de retorno: 200 está OK
+            //response.getStatusLine().getStatusCode(); // Se precisar saber o status de retorno: 200 está OK
         } catch (Exception e) { }
     }
 }

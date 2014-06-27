@@ -18,7 +18,8 @@ public class Parametros {
     public static Parametros getInstance() {
         if (parametros == null) {
             parametros = new Parametros();
-            parametros.IP = "10.199.38.61";
+            //parametros.IP = "10.199.38.61";
+            parametros.IP = "192.168.0.103";
         }
         return parametros;
     }
