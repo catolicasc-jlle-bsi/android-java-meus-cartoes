@@ -2,6 +2,7 @@ package com.mycards.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
+    public static final String PREFS_NAME = "MyPrefsFile";
+    private static final String PREFS_IP = "Ip";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,21 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         mTitle = getTitle();
 
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String ip = settings.getString(PREFS_IP,"192.168.0.103");
+        Parametros.getInstance().IP = ip;
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PREFS_IP, Parametros.getInstance().IP);
+        editor.commit();
     }
 
     @Override
@@ -178,5 +196,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+
     }
 }
