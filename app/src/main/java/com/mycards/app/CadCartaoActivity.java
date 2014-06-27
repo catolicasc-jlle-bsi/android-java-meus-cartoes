@@ -73,8 +73,8 @@ public class CadCartaoActivity extends Activity {
         verifyCode.setText(card.verifyCode);
 
         // O spinner será carregado por outra thread
-        new Download().execute(new Bank(), this, bank);
-        new Download().execute(new Flag(), this, flag);
+        new Download().execute(new Bank(), this, bank, card.bank);
+        new Download().execute(new Flag(), this, flag, card.flag);
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -89,14 +89,10 @@ public class CadCartaoActivity extends Activity {
     }
 
     private void excluirESair() {
-        try {
-            new Delete().execute(card);
+        new Delete().execute(card);
 
-            Toast.makeText(this, "Cartão excluído com sucesso", Toast.LENGTH_SHORT).show();
-            finalizar();
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, "Cartão excluído com sucesso", Toast.LENGTH_SHORT).show();
+        finalizar();
     }
 
     private void salvarESair() {

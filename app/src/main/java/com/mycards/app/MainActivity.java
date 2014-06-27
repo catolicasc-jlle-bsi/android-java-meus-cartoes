@@ -152,15 +152,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
             switch (posicao) {
                 case 1 : {
-                    new Download().execute(new Bank(), getActivity(), listView);
+                    new Download().execute(new Bank(), getActivity(), listView, null);
                     break;
                 }
                 case 2: {
-                    new Download().execute(new Flag(), getActivity(), listView);
+                    new Download().execute(new Flag(), getActivity(), listView, null);
                     break;
                 }
                 case 3: {
-                    new Download().execute(new Card(), getActivity(), listView);
+                    new Download().execute(new Card(), getActivity(), listView, null);
                     break;
                 }
             }

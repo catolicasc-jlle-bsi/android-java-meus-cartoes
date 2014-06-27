@@ -13,6 +13,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etIp"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
         android:maxLines="1"/>
 
     <Button
