@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mycards.api.Delete;
 import com.mycards.api.Upload;
 import com.mycards.business.Flag;
 import com.mycards003.app.R;
@@ -60,7 +61,7 @@ public class CadBandeiraActivity extends Activity {
 
     private void excluirESair() {
         try {
-            //TODO:Implementar rotina de exclusão
+            new Delete().execute(flag);
 
             Toast.makeText(this, "Bandeira excluída com sucesso", Toast.LENGTH_SHORT).show();
             finalizar();

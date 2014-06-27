@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.mycards.api.Delete;
 import com.mycards.api.Download;
 import com.mycards.api.Upload;
 import com.mycards.business.Bank;
@@ -89,7 +90,7 @@ public class CadCartaoActivity extends Activity {
 
     private void excluirESair() {
         try {
-            //TODO:Implementar rotina de exclusão
+            new Delete().execute(card);
 
             Toast.makeText(this, "Cartão excluído com sucesso", Toast.LENGTH_SHORT).show();
             finalizar();
