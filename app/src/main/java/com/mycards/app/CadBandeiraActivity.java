@@ -1,4 +1,4 @@
-package com.mycards003.app;
+package com.mycards.app;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.mycards.api.Upload;
 import com.mycards.business.Flag;
+import com.mycards003.app.R;
 
 public class CadBandeiraActivity extends Activity {
 

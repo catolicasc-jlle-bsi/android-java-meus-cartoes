@@ -1,6 +1,4 @@
-package com.mycards003.app;
-
-import android.content.Intent;
+package com.mycards.app;
 
 import com.mycards.business.Model;
 

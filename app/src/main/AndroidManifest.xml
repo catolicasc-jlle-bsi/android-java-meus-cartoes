@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.mycards003.app.MainActivity"
+            android:name="com.mycards.app.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,30 +23,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadActivity"
+        <activity android:name="com.mycards.app.CadActivity"
             android:label="@string/title_cad"
-            android:parentActivityName="com.mycards003.app.MainActivity">
+            android:parentActivityName="com.mycards.app.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>
         </activity>
-        <activity android:name=".CadBancoActivity"
+        <activity android:name="com.mycards.app.CadBancoActivity"
             android:label="@string/title_cad_banco"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.mycards.app.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>
         </activity>
-        <activity android:name=".CadBandeiraActivity"
+        <activity android:name="com.mycards.app.CadBandeiraActivity"
             android:label="@string/title_cad_bandeira"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.mycards.app.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>
         </activity>
-        <activity android:name=".CadCartaoActivity"
+        <activity android:name="com.mycards.app.CadCartaoActivity"
             android:label="@string/title_cad_cartao"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.mycards.app.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>

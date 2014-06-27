@@ -1,9 +1,8 @@
-package com.mycards003.app;
+package com.mycards.app;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,10 +13,7 @@ import com.mycards.api.Upload;
 import com.mycards.business.Bank;
 import com.mycards.business.Card;
 import com.mycards.business.Flag;
-import com.mycards.business.Model;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mycards003.app.R;
 
 public class CadCartaoActivity extends Activity {
 

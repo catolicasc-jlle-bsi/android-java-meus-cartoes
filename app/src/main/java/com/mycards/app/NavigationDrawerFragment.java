@@ -1,4 +1,4 @@
-package com.mycards003.app;
+package com.mycards.app;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.mycards.business.Bank;
 import com.mycards.business.Card;
 import com.mycards.business.Flag;
-import com.mycards.business.Model;
+import com.mycards003.app.R;
 
 public class NavigationDrawerFragment extends Fragment {
 

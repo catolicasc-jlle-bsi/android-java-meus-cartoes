@@ -1,4 +1,4 @@
-package com.mycards003.app;
+package com.mycards.app;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.mycards003.app.R;
 
 /**
  * Created by Takeshi on 24/06/2014.
