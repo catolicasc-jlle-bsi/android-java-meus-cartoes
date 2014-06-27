@@ -10,6 +10,7 @@ public class Parametros {
     private static Parametros parametros = null;
     public static Model model;
     public static Integer posicaoMenu;
+    public static String IP;
 
     private Parametros() { }
 

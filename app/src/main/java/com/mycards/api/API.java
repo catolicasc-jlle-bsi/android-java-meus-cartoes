@@ -2,6 +2,7 @@ package com.mycards.api;
 
 import android.util.Log;
 
+import com.mycards.app.Parametros;
 import com.mycards.business.Model;
 
 import org.apache.http.HttpResponse;
@@ -27,13 +28,15 @@ import java.util.concurrent.ExecutionException;
 
 public class API {
 
-    private final String urlPath = "http://10.199.38.61:8080/carteira/api/";
+    private String urlPath = "http://%s:8080/carteira/api/%s";
     private Model obj;
     private String url;
 
     public API(Model obj) {
         this.obj = obj;
-        this.url = urlPath + this.obj.getClass().getSimpleName().toLowerCase();
+        //TODO: buscar o IP da tela Settings
+        Parametros.getInstance().IP = "10.199.38.61";
+        this.url = String.format(this.urlPath, Parametros.getInstance().IP, this.obj.getClass().getSimpleName().toLowerCase());
     }
 
     /* Não está sendo utilizado no momento e talvez nem seja utilizada
