@@ -51,6 +51,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycards003.app.MainActivity"/>
         </activity>
+        <activity android:name="com.mycards.app.SettingsActivity"
+            android:label="@string/title_settings"
+            android:parentActivityName="com.mycards.app.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycards003.app.MainActivity"/>
+        </activity>
 
     </application>
 

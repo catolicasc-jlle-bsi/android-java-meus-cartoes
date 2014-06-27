@@ -34,8 +34,6 @@ public class API {
 
     public API(Model obj) {
         this.obj = obj;
-        //TODO: buscar o IP da tela Settings
-        Parametros.getInstance().IP = "10.199.38.61";
         this.url = String.format(this.urlPath, Parametros.getInstance().IP, this.obj.getClass().getSimpleName().toLowerCase());
     }
 

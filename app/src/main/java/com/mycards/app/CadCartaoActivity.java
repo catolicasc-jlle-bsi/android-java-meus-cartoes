@@ -24,7 +24,7 @@ public class CadCartaoActivity extends Activity {
     private EditText name;
     private EditText cardName;
     private EditText cardNumber;
-    private EditText dateValidatedMounth;
+    private EditText dateValidatedMonth;
     private EditText dateValidatedYear;
     private EditText verifyCode;
     private Spinner flag;
@@ -38,12 +38,12 @@ public class CadCartaoActivity extends Activity {
         btn = (Button)findViewById(R.id.btnCadastro);
 
         name = (EditText)this.findViewById(R.id.etNome);
-        /* TODO: preencher com os componentes
-        cardName =
-        cardNumber =
-        dateValidatedMounth =
-        dateValidatedYear =
-        verifyCode =*/
+        cardName = (EditText)this.findViewById(R.id.etcardName);
+        cardNumber = (EditText)this.findViewById(R.id.etcardNumber);
+        dateValidatedMonth = (EditText)this.findViewById(R.id.etValidateMonth);
+        dateValidatedYear = (EditText)this.findViewById(R.id.etValidateYear);
+        verifyCode = (EditText)this.findViewById(R.id.etVerifyCode);
+
         bank = (Spinner)findViewById(R.id.spinner_banco);
         flag = (Spinner)findViewById(R.id.spinner_bandeira);
     }
@@ -55,12 +55,11 @@ public class CadCartaoActivity extends Activity {
         card = (Card) Parametros.getInstance().model;
 
         name.setText(card.name);
-        /* TODO: preencher com os componentes
-        cardName =
-        cardNumber =
-        dateValidatedMounth =
-        dateValidatedYear =
-        verifyCode =*/
+        cardName.setText(card.cardName);
+        cardNumber.setText(card.cardNumber);
+        dateValidatedMonth.setText(card.dateValidatedMounth);
+        dateValidatedYear.setText(card.dateValidatedYear);
+        verifyCode.setText(card.verifyCode);
 
         // O spinner será carregado por outra thread
         new Download().execute(new Bank(), this, bank);
@@ -80,13 +79,19 @@ public class CadCartaoActivity extends Activity {
                 throw new Exception("Informe o nome do cartão");
             }
 
+            if (!dateValidatedMonth.getText().toString().trim().equals("")) {
+                Integer month = Integer.getInteger(dateValidatedMonth.getText().toString().trim());
+                if ((month < 1) || (month > 12)) {
+                    throw new Exception("Mês de validade inválido");
+                }
+            }
+
             card.name = name.getText().toString(); //Campo obrigatório
-            /* TODO: preencher com os componentes
-            cardName =
-            cardNumber =
-            dateValidatedMounth =
-            dateValidatedYear =
-            verifyCode =*/
+            card.cardName = cardName.getText().toString();
+            card.cardNumber = cardNumber.getText().toString();
+            card.dateValidatedMounth = dateValidatedMonth.getText().toString();
+            card.dateValidatedYear = dateValidatedYear.getText().toString();
+            card.verifyCode = verifyCode.getText().toString();
 
             card.bank = (Bank) bank.getSelectedItem();
             card.flag = (Flag) flag.getSelectedItem();

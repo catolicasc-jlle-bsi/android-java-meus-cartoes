@@ -83,7 +83,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Toast.makeText(getApplication(),"Opção não implementada", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+
+            //Toast.makeText(getApplication(),"Opção não implementada", Toast.LENGTH_SHORT).show();
         }
         return retorno;
     }

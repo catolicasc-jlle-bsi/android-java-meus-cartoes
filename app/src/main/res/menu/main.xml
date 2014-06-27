@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mycards.app.MainActivity" >
     <item android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_refresh"
         android:title="@string/botao_refresh"
         app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_novo"
+        android:icon="@drawable/ic_add"
         android:title="@string/botao_barra"
         app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="withText|ifRoom" />
 </menu>

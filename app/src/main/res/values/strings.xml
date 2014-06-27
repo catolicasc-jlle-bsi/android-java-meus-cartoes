@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MyCards003</string>
+    <string name="app_name">Meus Cartões</string>
     <string name="title_section1">Bancos</string>
     <string name="title_section2">Bandeiras</string>
     <string name="title_section3">Cartões</string>
@@ -15,5 +15,6 @@
     <string name="title_cad_banco">Cadastro Banco</string>
     <string name="title_cad_bandeira">Cadastro Bandeira</string>
     <string name="title_cad_cartao">Cadastro Cartão</string>
+    <string name="title_settings">Settings</string>
 
 </resources>
